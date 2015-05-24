@@ -1,0 +1,17 @@
+%%-*- mode: erlang -*-
+{application, repoman,
+ [
+  {description, "Http requests on behalf of the client"},
+  {vsn, "1"},
+  {modules, []},
+  {registered, [repoman_sup]},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  inets,
+                  crypto,
+                  elli
+                 ]},
+  {mod, {repoman_app, []}},
+  {env, []}
+ ]}.
