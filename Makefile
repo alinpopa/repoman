@@ -1,10 +1,10 @@
 ERL ?= erl
 APP := repoman
-REBAR ?= ./rebar
+REBAR ?= $(CURDIR)/rebar
 
 .PHONY: deps
 
-all: deps compile eunit
+all: distclean deps compile eunit node
 
 compile:
 	$(REBAR) compile
@@ -25,8 +25,8 @@ distclean: clean
 start: all
 	$(ERL) -pa $(PWD)/ebin $(PWD)/deps/*/ebin -boot start_sasl -s repoman
 
-node: distclean all
-	cd rel/ && ../$(REBAR) generate
+node:
+	cd rel/ && $(REBAR) generate
 
 docs:
 	$(ERL) -noshell -run edoc_run application '$(APP)' '"."' '[]'
